@@ -7,14 +7,14 @@ var fs = require('fs');
 var loadedFiles = false;
 
 //Make sure to set the redirect URI in the Spotify app you create!
-var redirect_uri = 'http://localhost:8888/callback';
-var my_client_id = null;
-var my_client_secret = null;
+// var redirect_uri = 'http://localhost:8888/callback';
+// var my_client_id = null;
+// var my_client_secret = null;
 
-var access_token = null;
-var refresh_token = null;
+// var access_token = null;
+// var refresh_token = null;
 var api_key = null;
-var client_uri = 'http://localhost:4200';
+// var client_uri = 'http://localhost:4200';
 
 /*
 function refresh() {
@@ -144,57 +144,62 @@ router.get('*', function(req, res, next) {
 // 	}
 // });
 
-// router.get('/me', function(req, res, next) {
-// 	makeAPIRequest('https://api.spotify.com/v1/me', res);
+router.get('/mostpopular', function(req, res, next) {
+	var params = new URLSearchParams();
+	params.append('api-key', api_key);
+	makeAPIRequest('https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?' + params, res);
+});
+
+router.get('/search/:q/:page/:sort', function(req, res, next) {
+	var q = req.params.q;
+	var page = req.params.page;
+	var sort = req.params.sort;
+	var params = new URLSearchParams();
+	params.append('q', q);
+	params.append('page', page);
+	params.append('sort', sort);
+	params.append('api-key', api_key);
+	makeAPIRequest('https://api.nytimes.com/svc/search/v2/articlesearch.json?' + params, res);
+});
+
+// router.get('/artist/:id', function(req, res, next) {
+// 	var id = req.params.id;
+// 	makeAPIRequest('https://api.spotify.com/v1/artists/' + id, res);
 // });
 
-router.get('/search/:category/:resource', function(req, res, next) {
-	var resource = req.params.resource;
-	var category = req.params.category;
-	var params = new URLSearchParams();
-	params.append('q', resource);
-	params.append('type', category);
-	makeAPIRequest('https://api.spotify.com/v1/search?' + params, res);
-});
+// router.get('/artist-related-artists/:id', function(req, res, next) {
+// 	var id = req.params.id;
+// 	makeAPIRequest('https://api.spotify.com/v1/artists/' + id + '/related-artists', res);
+// });
 
-router.get('/artist/:id', function(req, res, next) {
-	var id = req.params.id;
-	makeAPIRequest('https://api.spotify.com/v1/artists/' + id, res);
-});
+// router.get('/artist-albums/:id', function(req, res, next) {
+// 	var id = req.params.id;
+// 	makeAPIRequest('https://api.spotify.com/v1/artists/' + id + '/albums', res);
+// });
 
-router.get('/artist-related-artists/:id', function(req, res, next) {
-	var id = req.params.id;
-	makeAPIRequest('https://api.spotify.com/v1/artists/' + id + '/related-artists', res);
-});
+// router.get('/artist-top-tracks/:id', function(req, res, next) {
+// 	var id = req.params.id;
+// 	makeAPIRequest('https://api.spotify.com/v1/artists/' + id + '/top-tracks?country=US', res);
+// });
 
-router.get('/artist-albums/:id', function(req, res, next) {
-	var id = req.params.id;
-	makeAPIRequest('https://api.spotify.com/v1/artists/' + id + '/albums', res);
-});
+// router.get('/album/:id', function(req, res, next) {
+// 	var id = req.params.id;
+// 	makeAPIRequest('https://api.spotify.com/v1/albums/' + id, res);
+// });
 
-router.get('/artist-top-tracks/:id', function(req, res, next) {
-	var id = req.params.id;
-	makeAPIRequest('https://api.spotify.com/v1/artists/' + id + '/top-tracks?country=US', res);
-});
+// router.get('/album-tracks/:id', function(req, res, next) {
+// 	var id = req.params.id;
+// 	makeAPIRequest('https://api.spotify.com/v1/albums/' + id + '/tracks', res);
+// });
 
-router.get('/album/:id', function(req, res, next) {
-	var id = req.params.id;
-	makeAPIRequest('https://api.spotify.com/v1/albums/' + id, res);
-});
+// router.get('/track/:id', function(req, res, next) {
+// 	var id = req.params.id;
+// 	makeAPIRequest('https://api.spotify.com/v1/tracks/' + id, res);
+// });
 
-router.get('/album-tracks/:id', function(req, res, next) {
-	var id = req.params.id;
-	makeAPIRequest('https://api.spotify.com/v1/albums/' + id + '/tracks', res);
-});
-
-router.get('/track/:id', function(req, res, next) {
-	var id = req.params.id;
-	makeAPIRequest('https://api.spotify.com/v1/tracks/' + id, res);
-});
-
-router.get('/track-audio-features/:id', function(req, res, next) {
-	var id = req.params.id;
-	makeAPIRequest('https://api.spotify.com/v1/audio-features/' + id, res);
-});
+// router.get('/track-audio-features/:id', function(req, res, next) {
+// 	var id = req.params.id;
+// 	makeAPIRequest('https://api.spotify.com/v1/audio-features/' + id, res);
+// });
 
 module.exports = router;
