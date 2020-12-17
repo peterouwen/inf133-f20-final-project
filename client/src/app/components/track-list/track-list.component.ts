@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TrackData } from '../../data/track-data';
+import { NewsSearchData } from '../../data/news-search-data';
 
 @Component({
   selector: 'app-track-list',
@@ -7,9 +7,7 @@ import { TrackData } from '../../data/track-data';
   styleUrls: ['./track-list.component.css']
 })
 export class TrackListComponent implements OnInit {
-	@Input() tracks:TrackData[];
-	@Input() hideArtist:boolean = false;
-	@Input() hideAlbum:boolean = false;
+	@Input() newsSearch:NewsSearchData[];
 
   constructor() { }
 

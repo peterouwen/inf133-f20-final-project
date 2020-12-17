@@ -1,0 +1,17 @@
+<div *ngIf="news" class="row">
+    <div class="col-3">
+        <img class="d-84 w-150" src="{{news.imageURL}}">
+    </div>
+    <div class="col-6" style="background-color:darkgrey;">
+        <h2><a href="{{news.url}}"></a>{{news.title}}</h2>
+        <h4>{{news.byline}}</h4>
+        <h4>{{news.dateString}}</h4>
+        <h3>{{news.abstract}}</h3>
+        <h4>Keywords: {{news.keywordString}}</h4>
+    </div>
+    <div class='col-3' style="background-color:lightgrey">
+        <h2>{{news.section}}</h2>
+        <h3>{{news.subsection}}</h3>
+    </div>
+</div>
+

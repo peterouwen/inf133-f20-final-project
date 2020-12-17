@@ -9,8 +9,16 @@
 </select>
 <!--TODO: Call search function when the button is clicked-->
 <button class="btn btn-light" (click)="search()">Search</button>
-<!--TODO: Display a carousel component if searching for an artist or album. Bind carousel's resources and give it a static carouselId.-->
-<app-carousel *ngIf="searchCategory === searchCategories[0]" carouselId="artists" [resources]="resources"></app-carousel>
-<app-carousel *ngIf="searchCategory === searchCategories[1]" carouselId="albums" [resources]="resources"></app-carousel>
+
 <!--TODO: Display a track-list component if searching for a track. Bind track-list's tracks.-->
-<app-track-list *ngIf="searchCategory === searchCategories[2]" [tracks]="resources"></app-track-list>
+<app-track-list [tracks]="resources"></app-track-list>
+<div class="row">
+	<div class="col-4"></div>
+	<div class="col-2">
+		<button *ngIf="page !== 0" class="btn btn-light" (click)="previousPage()">Previous</button>
+	</div>
+	<div class="col-2">
+		<button *ngIf="page !== 100" class="btn btn-light" (click)="nextPage()">Next</button>
+	</div>
+	<div class="col-4"></div>
+</div>

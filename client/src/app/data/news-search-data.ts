@@ -30,4 +30,12 @@ export class NewsSearchData {
         });
         this.imageURL = media[0]['url'];
     }
+
+    get keywordString() {
+        return this.keywords.join(', ');
+    }
+
+    get dateString() {
+        return this.publishDate.toLocaleDateString();
+    }
 }
