@@ -1,9 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
-import { ArtistData } from '../../data/artist-data';
-import { AlbumData } from '../../data/album-data';
-import { TrackData } from '../../data/track-data';
-import { ResourceData } from '../../data/resource-data';
 import { NewsSearchData } from '../../data/news-search-data';
 
 @Component({
